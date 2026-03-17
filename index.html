@@ -1,0 +1,357 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>STAFF TRIUMPH — Аутсорсинг персонала</title>
+<meta name="description" content="Аутсорсинг персонала для складов, производств и общепита. Москва и Московская область.">
+<style>
+:root{
+  --text:#f4f6f8; --muted:rgba(244,246,248,.72); --muted2:rgba(244,246,248,.56);
+  --gold:#cf9338; --gold2:#f7c25a; --gold3:#ffe39a; --max:1220px; --shadow:0 20px 50px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 20% 20%, #11151c, #0b0f14)}
+a{text-decoration:none;color:inherit}
+img,video{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.section{padding:96px 0}
+h1,h2,h3,p{margin:0}
+h2{font-size:36px;margin-bottom:18px}
+.sub{max-width:860px;color:var(--muted);font-size:18px;line-height:1.65}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;z-index:999}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(10,12,16,.72);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar .in{min-height:118px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand img{height:176px;width:auto;object-fit:contain;filter:drop-shadow(0 12px 32px rgba(0,0,0,.55));margin:8px 0 0 0}
+.nav{display:flex;gap:24px;font-size:14px;color:var(--muted)}
+.nav a{position:relative;padding:8px 0}
+.nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--gold2);transition:.3s}
+.nav a:hover{color:#fff}.nav a:hover::after{width:100%}
+.rightbar{display:flex;align-items:center;gap:12px}
+.icon-links{display:flex;gap:10px}
+.icon-link{width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;transition:.25s}
+.icon-link:hover{transform:translateY(-1px);border-color:rgba(247,194,90,.35)}
+.icon-link svg{width:20px;height:20px;fill:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;border-radius:14px;font-weight:800;border:1px solid transparent;cursor:pointer;transition:all .25s ease;position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,.22),transparent);transform:translateX(-100%)}
+.btn:hover::after{transform:translateX(100%);transition:.6s}
+.btn:hover{transform:translateY(-1px) scale(1.02)}
+.btn.primary{color:#1a1308;background:linear-gradient(135deg,var(--gold),var(--gold2));box-shadow:0 12px 30px rgba(207,147,56,.2)}
+.btn.secondary{color:#fff;background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.12)}
+
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.05)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.38) contrast(1.08);transform:scale(1.08)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.58),rgba(0,0,0,.90));z-index:1}
+.hero .wrap{position:relative;z-index:2;padding-top:118px;padding-bottom:84px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);font-size:13px;color:#fff}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--gold2);box-shadow:0 0 14px var(--gold2)}
+h1{margin:22px 0 14px;font-size:clamp(40px,5vw,72px);font-weight:900;line-height:1.05;max-width:900px}
+.hero-hook{font-size:clamp(26px,3vw,40px);font-weight:900;color:var(--gold2);line-height:1.08;max-width:760px}
+.hero-sub{margin-top:14px;max-width:780px;font-size:18px;line-height:1.62;color:rgba(244,246,248,.9)}
+.hero-line{margin-top:18px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.hero-points{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;max-width:1020px}
+.hero-point,.card,.step,.service-card{backdrop-filter:blur(10px);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.hero-point{padding:16px;border-radius:18px}
+.hero-point b{display:block;font-size:17px;margin-bottom:6px;color:#fff}
+.hero-point span{font-size:14px;line-height:1.45;color:var(--muted)}
+
+.services-grid,.trust-grid,.steps,.offer-box,.split{display:grid;gap:24px;margin-top:40px}
+.services-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.trust-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.offer-box{grid-template-columns:1fr 1fr;align-items:start}
+.split{grid-template-columns:1.02fr .98fr;align-items:center}
+.card,.step,.service-card{border-radius:18px;transition:all .25s ease}
+.card:hover,.step:hover,.service-card:hover{transform:translateY(-6px)}
+
+.service-card{padding:0;overflow:hidden}
+.service-card .media{height:340px;background:#0e1014;overflow:hidden;position:relative}
+.service-card .media img{width:100%;height:100%;object-fit:cover}
+.media.visible-all::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:var(--bgimg);
+  background-size:cover;
+  background-position:center;
+  filter:blur(18px) brightness(.72);
+  transform:scale(1.06);
+}
+.media.visible-all img{
+  position:relative;
+  z-index:1;
+  object-fit:contain;
+  padding:8px;
+}
+.service-card .body{padding:22px}
+.service-card h3{margin-bottom:10px;font-size:21px;line-height:1.2}
+.service-card p{color:var(--muted);line-height:1.65}
+.service-tag{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(247,194,90,.1);border:1px solid rgba(247,194,90,.22);color:var(--gold3);font-size:13px;margin-bottom:12px}
+.price{margin-top:14px;color:var(--gold2);font-weight:800}
+
+.step{padding:74px 24px 26px;text-align:center;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.step h3{margin-bottom:12px;font-size:21px}
+.step p{color:var(--muted);line-height:1.65}
+
+.bullet-list{display:grid;gap:14px;margin-top:22px}
+.bullet{padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--muted);line-height:1.6}
+.bullet b{color:#fff}
+.map{height:410px;max-width:500px;border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08);background:#111;justify-self:end}
+.map img{width:100%;height:100%;object-fit:contain;background:#111}
+
+.compact-form{padding:26px;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.stack{display:grid;gap:14px}
+.field label{display:block;margin-bottom:8px;font-size:14px;color:#d5d5d5}
+.field input,.field textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid #2a2f37;background:#151922;color:#fff;font-size:16px}
+.field textarea{resize:vertical;min-height:120px}
+.contacts-min{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.contact-chip{display:inline-flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.contact-chip svg,.icon-link svg{width:18px;height:18px;fill:var(--gold2)}
+.form-status{display:none;padding:14px 16px;border-radius:12px;font-size:14px;line-height:1.5}
+.form-status.show{display:block}
+.form-status.ok{background:rgba(76,175,80,.12);border:1px solid rgba(76,175,80,.28);color:#d8ffd9}
+.form-status.err{background:rgba(244,67,54,.12);border:1px solid rgba(244,67,54,.28);color:#ffd8d8}
+.small{font-size:13px;color:var(--muted2);line-height:1.5}
+
+details.faq{padding:18px 20px;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025)}
+details.faq+details.faq{margin-top:14px}
+details.faq summary{cursor:pointer;font-weight:700;list-style:none}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq p{margin:14px 0 0;color:var(--muted);line-height:1.65}
+
+
+.footer{padding:34px 0 54px;border-top:1px solid rgba(255,255,255,.06);color:var(--muted)}
+.footer-inner{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.footer-brand img{height:64px;width:auto;object-fit:contain;opacity:.96}
+.footer-text{display:grid;gap:6px}
+.footer-line{line-height:1.65}
+
+.fade-up{opacity:0;transform:translateY(40px);transition:.6s ease}
+.fade-up.show{opacity:1;transform:translateY(0)}
+
+@media (max-width:1100px){
+  .nav{display:none}
+  .hero-points,.trust-grid,.steps,.services-grid,.offer-box,.split{grid-template-columns:1fr 1fr}
+  .map{max-width:none;justify-self:stretch}
+}
+@media (max-width:760px){
+  .rightbar .btn{display:none}
+  .brand img{height:118px;margin:0}
+  .hero .wrap{padding-top:92px;padding-bottom:70px}
+  h1{font-size:40px}
+  .hero-hook{font-size:30px}
+  .hero-sub{font-size:16px}
+  .hero-points,.trust-grid,.steps,.services-grid,.offer-box,.split,.footer-inner{grid-template-columns:1fr}
+  .footer-brand img{height:56px}
+  .map{height:340px;max-width:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="topbar">
+  <div class="wrap in">
+    <a class="brand" href="#top" aria-label="STAFF TRIUMPH"><img src="logo.png" alt="STAFF TRIUMPH logo"></a>
+    <nav class="nav">
+      <a href="#services">Услуги</a>
+      <a href="#trust">Почему мы</a>
+      <a href="#workflow">Как мы работаем</a>
+      <a href="#faq">FAQ</a>
+      <a href="#geography">География</a>
+      <a href="#offer">Контакты</a>
+    </nav>
+    <div class="rightbar">
+      <div class="icon-links">
+        <a class="icon-link" href="tel:+79166228484" aria-label="Позвонить"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.3.56 3.58.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.19 2.47.56 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2Z"/></svg></a>
+        <a class="icon-link" href="mailto:stafftriumph.info@mail.ru" aria-label="Почта"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-7.38 4.61a1.2 1.2 0 0 1-1.24 0L4 8.24V6l7.38 4.61a1.2 1.2 0 0 0 1.24 0L20 6v2.24Z"/></svg></a>
+        <a class="icon-link" href="https://t.me/stafftriumph" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21.94 4.66c.18-.83-.58-1.52-1.36-1.23L2.97 10.2c-.86.33-.82 1.57.07 1.84l4.51 1.36 1.72 5.39c.24.76 1.2.97 1.73.37l2.52-2.82 4.95 3.64c.61.45 1.49.11 1.65-.64l1.82-8.69 0-.02 0-.01 0-.01 0-.02 0-.01L21.94 4.66Zm-3.41 2.49-7.52 6.66a.75.75 0 0 0-.23.38l-.55 2.57-.97-3.03a.75.75 0 0 0-.5-.49l-2.78-.84 12.55-4.85Z"/></svg></a>
+      </div>
+      <a class="btn primary" href="#offer">Получить КП</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero fade-up" id="top">
+  <video autoplay muted loop playsinline preload="metadata"><source src="hero.mp4" type="video/mp4"></video>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>B2B-аутсорсинг персонала для складов, производств и общепита</div>
+    <h1>Аутсорсинг персонала для складов, производств и общепита</h1>
+    <div class="hero-hook">Закрываем заявки на персонал за 24 часа</div>
+    <div class="hero-sub">Закроем заявку точно в срок и с гарантией качества. Предоставляем персонал для складов, РЦ, производств, клининга, общепита и вспомогательных задач.</div>
+    <div class="hero-line">Подбор • Персонал • Решение</div>
+    <div class="hero-actions">
+      <a class="btn primary" href="#offer">Оставить заявку</a>
+      <a class="btn secondary" href="https://t.me/stafftriumph" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+    <div class="hero-points">
+      <div class="hero-point"><b>3000+</b><span>сотрудников в базе<br>до 500 сотрудников под заказ</span></div>
+      <div class="hero-point"><b>24 часа</b><span>средний вывод персонала</span></div>
+      <div class="hero-point"><b>Контроль координатора</b><span>сопровождение и замены</span></div>
+      <div class="hero-point"><b>Москва и Московская область</b><span>основная география работы</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-up" id="services">
+  <div class="wrap">
+    <h2>Кого мы подбираем для объектов</h2>
+    <div class="sub">Карточки общепита и клининга собраны в режиме, где в кадре видно больше фигуры и при этом блок не выглядит пустым.</div>
+    <div class="services-grid">
+      <article class="service-card"><div class="media"><img src="service_loader.jpg" alt="Грузчики"></div><div class="body"><span class="service-tag">Склад</span><h3>Грузчики</h3><p>Погрузка, разгрузка, перемещение товара и усиление складских процессов под пиковые нагрузки.</p><div class="price">от 550 ₽ / час</div></div></article>
+      <article class="service-card"><div class="media"><img src="service_picker.jpg" alt="Комплектовщики"></div><div class="body"><span class="service-tag">Склад</span><h3>Комплектовщики</h3><p>Сбор заказов, работа со сканерами и сопровождение складских операций по регламенту объекта.</p><div class="price">от 550 ₽ / час</div></div></article>
+      <article class="service-card"><div class="media"><img src="service_packer.jpg" alt="Операторы линии и фасовщики"></div><div class="body"><span class="service-tag">Производство</span><h3>Операторы линии и фасовщики</h3><p>Поддержка линий, фасовка, упаковка и выполнение регулярных производственных операций.</p><div class="price">от 500 ₽ / час</div></div></article>
+      <article class="service-card"><div class="media"><img src="service_helper.jpg" alt="Подсобные рабочие"></div><div class="body"><span class="service-tag">Поддержка</span><h3>Подсобные рабочие</h3><p>Вспомогательные работы на складах, в производстве и на объектах с регулярной физической нагрузкой.</p><div class="price">от 500 ₽ / час</div></div></article>
+      <article class="service-card"><div class="media visible-all" style="--bgimg:url('service_catering.jpg')"><img src="service_catering.jpg" alt="Персонал для общепита"></div><div class="body"><span class="service-tag">Общепит</span><h3>Персонал для общепита</h3><p>Линейный персонал для кухонь, точек питания и food-сервиса: подготовка, помощь на линии, сборка заказов и поддержка смен.</p><div class="price">от 500 ₽ / час</div></div></article>
+      <article class="service-card"><div class="media visible-all" style="--bgimg:url('service_cleaning.jpg')"><img src="service_cleaning.jpg" alt="Уборщики и техперсонал"></div><div class="body"><span class="service-tag">Клининг</span><h3>Уборщики и техперсонал</h3><p>Поддержание чистоты, санитарные задачи и усиление объекта техническим персоналом.</p><div class="price">от 450 ₽ / час</div></div></article>
+    </div>
+  </div>
+</section>
+
+
+<section class="section fade-up" id="trust">
+  <div class="wrap">
+    <h2>Почему компании выбирают STAFF TRIUMPH</h2>
+    <div class="sub">Вы получаете не поиск людей с нуля, а организованную систему вывода персонала на объекте.</div>
+    <div class="trust-grid">
+      <article class="card"><b style="display:block;font-size:28px;margin-bottom:6px;color:#fff">24 часа</b><p style="color:var(--muted);line-height:1.65">Быстро закрываем срочные заявки и подстраиваемся под реальный темп бизнеса.</p></article>
+      <article class="card"><b style="display:block;font-size:28px;margin-bottom:6px;color:#fff">3000+</b><p style="color:var(--muted);line-height:1.65">Собственная база сотрудников для складов, РЦ, производств и общепита.</p></article>
+      <article class="card"><b style="display:block;font-size:28px;margin-bottom:6px;color:#fff">Контроль</b><p style="color:var(--muted);line-height:1.65">Координатор сопровождает выход, дисциплину и замены на объекте.</p></article>
+      <article class="card"><b style="display:block;font-size:28px;margin-bottom:6px;color:#fff">Официально</b><p style="color:var(--muted);line-height:1.65">Прозрачные условия, понятное КП и рабочая коммуникация без серых схем.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section fade-up" id="geography">
+  <div class="wrap">
+    <h2>Москва — центральный узел сети STAFF TRIUMPH</h2>
+    <div class="split">
+      <div>
+        <div class="sub">Планшет карты уменьшен под её реальный масштаб, чтобы она выглядела аккуратно и без лишнего пустого поля.</div>
+        <div class="bullet-list">
+          <div class="bullet"><b>База и координация</b><br>Единый центр управления заявками, выходом, заменами и коммуникацией.</div>
+          <div class="bullet"><b>Москва и Московская область</b><br>Основной регион запуска и сопровождения объектов.</div>
+          <div class="bullet"><b>Быстрое усиление</b><br>Если нужен ускоренный запуск, подключаем резерв и дополнительные смены.</div>
+        </div>
+      </div>
+      <div class="map"><img src="map.jpg" alt="География STAFF TRIUMPH"></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section fade-up" id="faq">
+  <div class="wrap">
+    <h2>Ответы на частые вопросы</h2>
+    <details class="faq" open><summary>Сколько времени занимает вывод персонала?</summary><p>В большинстве случаев вывод сотрудников занимает до 24 часов после подтверждения заявки. Срок зависит от количества работников, графика и специфики задач на объекте.</p></details>
+    <details class="faq"><summary>Проверяете ли вы сотрудников?</summary><p>Да. Мы работаем с собственной базой сотрудников, проверяем документы и готовность к выходу, а также сопровождаем запуск через координатора.</p></details>
+    <details class="faq"><summary>Что делать, если сотрудник не вышел на смену?</summary><p>Мы оперативно предоставляем замену, чтобы рабочий процесс на объекте не останавливался.</p></details>
+    <details class="faq"><summary>Можно ли быстро увеличить количество работников?</summary><p>Да. При росте нагрузки мы можем усилить объект и вывести дополнительный персонал в короткие сроки.</p></details>
+    <details class="faq"><summary>Работаете ли вы с сотрудниками из СНГ?</summary><p>Да. В нашей базе есть сотрудники с необходимыми документами для работы. Мы проверяем комплект документов до выхода на объект.</p></details>
+    <details class="faq"><summary>Как происходит оплата?</summary><p>После согласования условий сотрудничества фиксируем объём, стоимость и формат работы в коммерческом предложении и договоре.</p></details>
+  </div>
+</section>
+
+<section class="section fade-up" id="offer">
+  <div class="wrap offer-box">
+    <div>
+      <h2>Получить коммерческое предложение</h2>
+      <div class="sub">Оставьте заявку, и мы сохраним её в Google Sheets. Параллельно можно сразу связаться по телефону, почте или в Telegram.</div>
+      <div class="contacts-min">
+        <a class="contact-chip" href="tel:+79166228484"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.3.56 3.58.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.19 2.47.56 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2Z"/></svg><span>Позвонить</span></a>
+        <a class="contact-chip" href="mailto:stafftriumph.info@mail.ru"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.24-7.38 4.61a1.2 1.2 0 0 1-1.24 0L4 8.24V6l7.38 4.61a1.2 1.2 0 0 0 1.24 0L20 6v2.24Z"/></svg><span>Почта</span></a>
+        <a class="contact-chip" href="https://t.me/stafftriumph" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.94 4.66c.18-.83-.58-1.52-1.36-1.23L2.97 10.2c-.86.33-.82 1.57.07 1.84l4.51 1.36 1.72 5.39c.24.76 1.2.97 1.73.37l2.52-2.82 4.95 3.64c.61.45 1.49.11 1.65-.64l1.82-8.69 0-.02 0-.01 0-.01 0-.02 0-.01L21.94 4.66Zm-3.41 2.49-7.52 6.66a.75.75 0 0 0-.23.38l-.55 2.57-.97-3.03a.75.75 0 0 0-.5-.49l-2.78-.84 12.55-4.85Z"/></svg><span>Telegram</span></a>
+      </div>
+    </div>
+    <div class="compact-form">
+      <form id="leadForm" class="stack">
+        <div class="field"><label for="name">Имя</label><input id="name" name="name" type="text" placeholder="Как к вам обращаться" required></div>
+        <div class="field"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" placeholder="+7" required></div>
+        <div class="field"><label for="company">Компания</label><input id="company" name="company" type="text" placeholder="Название компании"></div>
+        <div class="field"><label for="comment">Комментарий</label><textarea id="comment" name="comment" rows="5" placeholder="Сколько сотрудников нужно, когда нужен выход, какие условия важны"></textarea></div>
+        <button id="submitBtn" class="btn primary" type="submit">Отправить заявку</button>
+        <div id="formOk" class="form-status ok">Заявка отправлена. Мы получили её в таблицу.</div>
+        <div id="formErr" class="form-status err">Не удалось отправить заявку. Проверь ссылку Apps Script или попробуй позже.</div>
+        <p class="small">Вставь свой URL Apps Script в переменную <code>GOOGLE_SCRIPT_URL</code> ниже.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand"><img src="logo.png" alt="STAFF TRIUMPH logo"></div>
+    <div class="footer-text">
+      <div class="footer-line">© 2026 STAFF TRIUMPH. Аутсорсинг персонала для складов, производств и общепита.</div>
+      <div class="footer-line">ООО «Агентство Стафф Триумф» · ИНН 9713034418 · ОГРН 1267700085146</div>
+      <div class="footer-line">127411, г. Москва, вн.тер.г. Муниципальный округ Дмитровский, ул. Софьи Ковалевской, д. 20, помещ. 103Н</div>
+      <div class="footer-line"><a href="https://stafftriumph.ru" target="_blank" rel="noopener">stafftriumph.ru</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const scroll = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  const progress = height > 0 ? (scroll / height) * 100 : 0;
+  document.getElementById('progress').style.width = progress + "%";
+});
+const elements = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+});
+elements.forEach(el => observer.observe(el));
+
+const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL_HERE";
+const leadForm = document.getElementById('leadForm');
+const submitBtn = document.getElementById('submitBtn');
+const formOk = document.getElementById('formOk');
+const formErr = document.getElementById('formErr');
+
+leadForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  formOk.classList.remove('show');
+  formErr.classList.remove('show');
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL_HERE')) {
+    formErr.textContent = 'Сначала вставь URL Google Apps Script в переменную GOOGLE_SCRIPT_URL.';
+    formErr.classList.add('show');
+    return;
+  }
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Отправляем...';
+  const payload = {
+    name: document.getElementById('name').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    company: document.getElementById('company').value.trim(),
+    comment: document.getElementById('comment').value.trim(),
+    source: 'stafftriumph.ru',
+    createdAt: new Date().toISOString()
+  };
+  try {
+    const res = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.result === 'success') {
+      leadForm.reset();
+      formOk.classList.add('show');
+    } else {
+      throw new Error('bad response');
+    }
+  } catch (err) {
+    formErr.classList.add('show');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Отправить заявку';
+  }
+});
+</script>
+</body>
+</html>
