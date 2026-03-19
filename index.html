@@ -200,6 +200,137 @@
       .hero__trust,.trust-grid,.steps,.cards-3,.contact-grid,.services-grid,.offer-box,.split,.calc-grid{grid-template-columns:1fr}
       .map-panel{min-height:300px}
     }
+  
+.hero-offer{
+  margin-top:18px;
+  display:grid;
+  gap:10px;
+  max-width:720px;
+}
+.hero-offer__item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.hero-offer__item::before{
+  content:"✦";
+  color:var(--gold-2);
+  font-size:14px;
+  line-height:1;
+}
+.hero-eaes{
+  margin-top:24px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  max-width:860px;
+}
+.hero-eaes__label{
+  font-size:14px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.hero-eaes__flags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.hero-eaes__flags span{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(6px);
+  color:rgba(244,246,248,.92);
+  font-size:14px;
+  font-weight:700;
+}
+
+.trust-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.service-card .media{height:420px;background:#0e1014}
+.service-card img{width:100%;height:100%;object-fit:cover}
+
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.service-card{
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.service-card:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 25px 60px rgba(0,0,0,.5);
+}
+
+.btn{
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(207,147,56,.3);
+}
+.btn:active{
+  transform:scale(.97);
+}
+
+.calc-result{
+  transition:opacity .3s ease, transform .3s ease;
+  transform:scale(.95);
+  opacity:0;
+}
+.calc-result.show{
+  transform:scale(1);
+  opacity:1;
+}
+
+.hero video{
+  animation:zoomHero 20s ease-in-out infinite alternate;
+}
+@keyframes zoomHero{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+
+.form-success{
+  display:none;
+  margin:6px 0 0;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(78,177,102,.12);
+  border:1px solid rgba(78,177,102,.35);
+  color:#dff7e4;
+  font-size:14px;
+  font-weight:700;
+}
+
+@media (max-width:1100px){
+  .trust-grid{grid-template-columns:1fr 1fr 1fr}
+}
+@media (max-width:768px){
+  .hero-offer__item{font-size:14px}
+  .hero-eaes__flags span{font-size:13px}
+  .trust-grid{grid-template-columns:1fr}
+}
+
   </style>
 </head>
 <body>
@@ -232,6 +363,22 @@
       <h1 class="hero__title">Аутсорсинг персонала для складов, производств и общепита</h1>
       <div class="hero__subtitle">Закрываем заявки на персонал за 24 часа</div>
       <p class="hero__text">Подбираем грузчиков, комплектовщиков, операторов линии, линейный персонал для общепита, клининга и вспомогательных задач в Москве и Московской области.</p>
+<div class="hero-offer">
+  <div class="hero-offer__item">До 500 сотрудников на один заказ</div>
+  <div class="hero-offer__item">Выход за 24 часа</div>
+  <div class="hero-offer__item">Работаем по Москве и Московской области</div>
+</div>
+<div class="hero-eaes">
+  <span class="hero-eaes__label">Работаем с гражданами ЕАЭС</span>
+  <div class="hero-eaes__flags">
+    <span>🇷🇺 РФ</span>
+    <span>🇺🇿 Узбекистан</span>
+    <span>🇹🇯 Таджикистан</span>
+    <span>🇰🇿 Казахстан</span>
+    <span>🇰🇬 Кыргызстан</span>
+  </div>
+</div>
+
       <div class="hero__line">Подбор • Персонал • Решение</div>
       <div class="hero__buttons">
         <a href="#calculator" class="btn btn--primary">Рассчитать стоимость</a>
@@ -246,22 +393,22 @@
     </div>
   </section>
 
-  <section class="section" id="services">
+  <section class="section reveal" id="services">
     <div class="wrap">
       <h2>Кого мы подбираем для объектов</h2>
       <div class="sub">Подбираем персонал под склады, производства, распределительные центры и общепит. Карточки собраны в едином премиальном стиле, без пустых зон и разъезжающихся фото.</div>
       <div class="services-grid">
-        <article class="service-card"><div class="media"><img src="service_loader.jpg" alt="Грузчики"></div><div class="body"><span class="service-tag">Склад</span><h3>Грузчики</h3><p>Погрузка, разгрузка, перемещение товара и усиление складских процессов под пиковые нагрузки.</p><div class="price">от 550 ₽ / час</div></div></article>
+        <article class="service-card"><div class="media"><img src="service_loader_eaes.jpg" alt="Грузчики"></div><div class="body"><span class="service-tag">Склад</span><h3>Грузчики</h3><p>Погрузка, разгрузка, перемещение товара и усиление складских процессов под пиковые нагрузки.</p><div class="price">от 550 ₽ / час</div></div></article>
         <article class="service-card"><div class="media"><img src="service_picker.jpg" alt="Комплектовщики"></div><div class="body"><span class="service-tag">Склад</span><h3>Комплектовщики</h3><p>Сбор заказов, работа со сканерами и сопровождение складских операций по регламенту объекта.</p><div class="price">от 550 ₽ / час</div></div></article>
         <article class="service-card"><div class="media"><img src="service_packer.jpg" alt="Операторы линии и фасовщики"></div><div class="body"><span class="service-tag">Производство</span><h3>Операторы линии и фасовщики</h3><p>Поддержка линий, фасовка, упаковка и выполнение регулярных производственных операций.</p><div class="price">от 500 ₽ / час</div></div></article>
         <article class="service-card"><div class="media"><img src="service_helper.jpg" alt="Подсобные рабочие"></div><div class="body"><span class="service-tag">Поддержка</span><h3>Подсобные рабочие</h3><p>Вспомогательные работы на складах, в производстве и на объектах с регулярной физической нагрузкой.</p><div class="price">от 500 ₽ / час</div></div></article>
-        <article class="service-card"><div class="media"><img src="service_catering.jpg" alt="Персонал для общепита" style="object-position:center center;"></div><div class="body"><span class="service-tag">Общепит</span><h3>Персонал для общепита</h3><p>Линейный персонал для кухонь, точек питания и food-сервиса: подготовка, помощь на линии, сборка заказов и поддержка смен.</p><div class="price">от 500 ₽ / час</div></div></article>
-        <article class="service-card"><div class="media"><img src="service_cleaning.jpg" alt="Уборщики и техперсонал" style="object-position:center center;"></div><div class="body"><span class="service-tag">Клининг</span><h3>Уборщики и техперсонал</h3><p>Поддержание чистоты, санитарные задачи и усиление объекта техническим персоналом.</p><div class="price">от 450 ₽ / час</div></div></article>
+        <article class="service-card"><div class="media"><img src="service_catering_eaes.jpg" alt="Персонал для общепита" style="object-position:center center;"></div><div class="body"><span class="service-tag">Общепит</span><h3>Персонал для общепита</h3><p>Линейный персонал для кухонь, точек питания и food-сервиса: подготовка, помощь на линии, сборка заказов и поддержка смен.</p><div class="price">от 500 ₽ / час</div></div></article>
+        <article class="service-card"><div class="media"><img src="service_cleaning_eaes.jpg" alt="Уборщики и техперсонал" style="object-position:center center;"></div><div class="body"><span class="service-tag">Клининг</span><h3>Уборщики и техперсонал</h3><p>Поддержание чистоты, санитарные задачи и усиление объекта техническим персоналом.</p><div class="price">от 450 ₽ / час</div></div></article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="trust">
+  <section class="section reveal" id="trust">
     <div class="wrap">
       <h2>Почему компании выбирают STAFF TRIUMPH</h2>
       <div class="sub">Вы получаете не поиск людей с нуля, а организованную систему вывода персонала на объекте.</div>
@@ -270,11 +417,12 @@
         <article class="card metric"><b>3000+</b><p>Собственная база сотрудников для складов, РЦ, производств и общепита.</p></article>
         <article class="card metric"><b>До 500 человек</b><p>Работаем с крупными заявками и можем масштабировать вывод персонала под один объект.</p></article>
         <article class="card metric"><b>Контроль</b><p>Координатор сопровождает выход, дисциплину и замены на объекте.</p></article>
+        <article class="card metric"><b>ЕАЭС</b><p>Работаем с гражданами РФ, Узбекистана, Таджикистана, Казахстана и Кыргызстана под задачи объекта.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="workflow">
+  <section class="section reveal" id="workflow">
     <div class="wrap">
       <h2>Как мы работаем</h2>
       <div class="sub">Понятный и прозрачный процесс от заявки до выхода сотрудников на объект.</div>
@@ -287,7 +435,7 @@
     </div>
   </section>
 
-  <section class="section" id="geography">
+  <section class="section reveal" id="geography">
     <div class="wrap split">
       <div>
         <h2>Москва — центральный узел сети STAFF TRIUMPH</h2>
@@ -302,7 +450,7 @@
     </div>
   </section>
 
-  <section class="calc-section" id="calculator">
+  <section class="calc-section reveal" id="calculator">
     <div class="wrap">
       <h2>Рассчитайте стоимость персонала</h2>
       <div class="sub">Предварительный расчёт покажем сразу на сайте. Точный расчёт и коммерческое предложение подготовим после заявки.</div>
@@ -329,7 +477,7 @@
     </div>
   </section>
 
-  <section class="section" id="cases">
+  <section class="section reveal" id="cases">
     <div class="wrap">
       <h2>Кейсы и объекты</h2>
       <div class="cards-3">
@@ -340,7 +488,7 @@
     </div>
   </section>
 
-  <section class="section" id="faq">
+  <section class="section reveal" id="faq">
     <div class="wrap">
       <h2>Ответы на частые вопросы</h2>
       <details class="faq" open><summary>Сколько времени занимает вывод персонала?</summary><p>В большинстве случаев вывод сотрудников занимает до 24 часов после подтверждения заявки. Срок зависит от количества работников, графика и специфики задач на объекте.</p></details>
@@ -349,10 +497,11 @@
       <details class="faq"><summary>Можно ли быстро увеличить количество работников?</summary><p>Да. При росте нагрузки мы можем усилить объект и вывести дополнительный персонал в короткие сроки, в том числе под крупные заявки.</p></details>
       <details class="faq"><summary>Работаете ли вы с сотрудниками из СНГ?</summary><p>Да. В нашей базе есть сотрудники с необходимыми документами для работы. Мы проверяем комплект документов до выхода на объект.</p></details>
       <details class="faq"><summary>Как происходит оплата?</summary><p>После согласования условий сотрудничества фиксируем объём, стоимость и формат работы в коммерческом предложении и договоре.</p></details>
+      <details class="faq"><summary>С какими гражданами вы работаете?</summary><p>Подбираем персонал из РФ, Узбекистана, Таджикистана, Казахстана и Кыргызстана в соответствии с требованиями объекта и форматом работ.</p></details>
     </div>
   </section>
 
-  <section class="section" id="offer">
+  <section class="section reveal" id="offer">
     <div class="wrap">
       <h2>Получить коммерческое предложение</h2>
       <div class="offer-box">
@@ -368,7 +517,8 @@
           <div class="stack">
             <div class="field"><label for="offerPhone">Телефон</label><input id="offerPhone" type="tel" placeholder="+7"></div>
             <div class="field"><label for="offerComment">Комментарий</label><textarea id="offerComment" rows="5" placeholder="Сколько сотрудников нужно, когда нужен выход, какие условия важны"></textarea></div>
-            <a id="offerMailLink" class="btn btn--primary" href="mailto:stafftriumph.info@mail.ru?subject=Заявка%20с%20сайта%20STAFF%20TRIUMPH">Отправить заявку</a>
+            <button id="offerSubmit" class="btn btn--primary" type="button">Отправить заявку</button>
+            <p id="formSuccess" class="form-success">Заявка подготовлена. Если Apps Script ещё не подключён, откроется письмо на почту.</p>
             <p class="small">Работаем и с крупными заявками — до 500 сотрудников на один объект. Если удобнее, можно сразу написать нам в Telegram.</p>
           </div>
         </div>
@@ -376,7 +526,7 @@
     </div>
   </section>
 
-  <section class="section" id="contacts">
+  <section class="section reveal" id="contacts">
     <div class="wrap">
       <h2>Контакты и реквизиты</h2>
       <div class="sub">Минимум контактов на сайте, максимум понятности. Всё важное — в одном месте.</div>
@@ -400,31 +550,94 @@
   </footer>
 
   <script>
-    const specialty = document.getElementById('specialty');
-    const workers = document.getElementById('workers');
-    const hours = document.getElementById('hours');
-    const days = document.getElementById('days');
-    const calcButton = document.getElementById('calcButton');
-    const calcResult = document.getElementById('calcResult');
-    const calcTotal = document.getElementById('calcTotal');
-    function formatPrice(num){ return new Intl.NumberFormat('ru-RU').format(num) + ' ₽'; }
-    function calculateTotal(){
-      const rate = Number(specialty.value) || 0;
-      const w = Number(workers.value) || 0;
-      const h = Number(hours.value) || 0;
-      const d = Number(days.value) || 0;
-      const total = rate * w * h * d;
-      calcTotal.textContent = formatPrice(total);
-      calcResult.classList.add('show');
-    }
-    calcButton.addEventListener('click', calculateTotal);
-    const offerLink = document.getElementById('offerMailLink');
-    offerLink.addEventListener('click', function(){
-      const phone = document.getElementById('offerPhone').value.trim();
-      const comment = document.getElementById('offerComment').value.trim();
-      const body = ['Заявка с сайта STAFF TRIUMPH','','Телефон: ' + phone,'Комментарий: ' + comment].join('\n');
-      this.href = 'mailto:stafftriumph.info@mail.ru?subject=' + encodeURIComponent('Заявка с сайта STAFF TRIUMPH') + '&body=' + encodeURIComponent(body);
+  const specialty = document.getElementById('specialty');
+  const workers = document.getElementById('workers');
+  const hours = document.getElementById('hours');
+  const days = document.getElementById('days');
+  const calcButton = document.getElementById('calcButton');
+  const calcResult = document.getElementById('calcResult');
+  const calcTotal = document.getElementById('calcTotal');
+
+  function formatPrice(num){ return new Intl.NumberFormat('ru-RU').format(num) + ' ₽'; }
+
+  function calculateTotal(){
+    const rate = Number(specialty.value) || 0;
+    const w = Number(workers.value) || 0;
+    const h = Number(hours.value) || 0;
+    const d = Number(days.value) || 0;
+    const total = rate * w * h * d;
+    calcTotal.textContent = formatPrice(total);
+    calcResult.classList.add('show');
+  }
+  calcButton.addEventListener('click', calculateTotal);
+
+  const reveals = document.querySelectorAll('.reveal');
+  function revealOnScroll(){
+    const trigger = window.innerHeight * 0.85;
+    reveals.forEach(el=>{
+      const top = el.getBoundingClientRect().top;
+      if(top < trigger){
+        el.classList.add('active');
+      }
     });
-  </script>
+  }
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+
+  window.addEventListener('scroll', ()=>{
+    const header = document.querySelector('.topbar');
+    if(window.scrollY > 50){
+      header.style.background = "rgba(9,11,14,0.95)";
+      header.style.boxShadow = "0 10px 30px rgba(0,0,0,0.4)";
+    }else{
+      header.style.background = "rgba(9,11,14,0.82)";
+      header.style.boxShadow = "none";
+    }
+  });
+
+  const APPS_SCRIPT_URL = ""; // Вставь сюда URL веб-приложения Google Apps Script для Google Sheets
+  const offerSubmit = document.getElementById('offerSubmit');
+  const formSuccess = document.getElementById('formSuccess');
+
+  offerSubmit.addEventListener('click', async function(){
+    const phone = document.getElementById('offerPhone').value.trim();
+    const comment = document.getElementById('offerComment').value.trim();
+    const payload = {
+      phone,
+      comment,
+      createdAt: new Date().toISOString(),
+      source: 'STAFF TRIUMPH website'
+    };
+
+    try{
+      if(APPS_SCRIPT_URL){
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        formSuccess.style.display = 'block';
+        formSuccess.textContent = 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+        return;
+      }
+    }catch(e){}
+
+    const body = [
+      'Заявка с сайта STAFF TRIUMPH',
+      '',
+      'Телефон: ' + phone,
+      'Комментарий: ' + comment
+    ].join('
+');
+
+    window.location.href = 'mailto:stafftriumph.info@mail.ru?subject=' +
+      encodeURIComponent('Заявка с сайта STAFF TRIUMPH') +
+      '&body=' + encodeURIComponent(body);
+
+    formSuccess.style.display = 'block';
+    formSuccess.textContent = 'Заявка подготовлена. Если Google Sheets ещё не подключён, открылось письмо на почту.';
+  });
+</script>
 </body>
 </html>
